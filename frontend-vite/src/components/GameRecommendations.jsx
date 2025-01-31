@@ -17,6 +17,7 @@ import {
 } from '@mui/material';
 import { Search as SearchIcon, Gamepad as GamepadIcon } from '@mui/icons-material';
 import { useAuth } from '../context/AuthContext';
+import { API_URL } from '../config';
 
 const popularGames = [
     {
@@ -175,7 +176,7 @@ const GameRecommendations = () => {
             };
 
             console.log('Sending request with token:', token);
-            const response = await fetch('http://localhost:5000/api/games', {
+            const response = await fetch(`${API_URL}/api/games`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

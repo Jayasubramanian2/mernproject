@@ -24,6 +24,7 @@ import {
     AddToQueue as AddToQueueIcon
 } from '@mui/icons-material';
 import { useAuth } from '../context/AuthContext';
+import { API_URL } from '../config';
 
 const trendingGames = [
     {
@@ -131,7 +132,7 @@ const TrendingGames = () => {
                 status: "Not Started"
             };
 
-            const response = await fetch('http://localhost:5000/api/games', {
+            const response = await fetch(`${API_URL}/api/games`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

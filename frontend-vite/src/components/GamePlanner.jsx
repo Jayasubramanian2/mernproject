@@ -18,6 +18,7 @@ import {
 } from '@mui/material';
 import { Delete as DeleteIcon, Edit as EditIcon } from '@mui/icons-material';
 import { useAuth } from '../context/AuthContext';
+import { API_URL } from '../config';
 
 const GamePlanner = () => {
     const { token } = useAuth();
@@ -42,7 +43,7 @@ const GamePlanner = () => {
 
     const fetchGames = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/games', {
+            const response = await fetch(`${API_URL}/api/games`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -61,8 +62,8 @@ const GamePlanner = () => {
         e.preventDefault();
         try {
             const url = editingGame 
-                ? `http://localhost:5000/api/games/${editingGame._id}`
-                : 'http://localhost:5000/api/games';
+                ? `${API_URL}/api/games/${editingGame._id}`
+                : `${API_URL}/api/games`;
             
             const method = editingGame ? 'PUT' : 'POST';
             
@@ -103,7 +104,7 @@ const GamePlanner = () => {
 
     const handleDelete = async (gameId) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/games/${gameId}`, {
+            const response = await fetch(`${API_URL}/api/games/${gameId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`

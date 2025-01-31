@@ -24,6 +24,7 @@ import {
     School as SchoolIcon
 } from '@mui/icons-material';
 import { useAuth } from '../context/AuthContext';
+import { API_URL } from '../config';
 
 const StudyPlanner = () => {
     const { token } = useAuth();
@@ -51,7 +52,7 @@ const StudyPlanner = () => {
 
     const fetchStudies = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/studies', {
+            const response = await fetch(`${API_URL}/api/studies`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -83,8 +84,8 @@ const StudyPlanner = () => {
         e.preventDefault();
         try {
             const url = editingStudy 
-                ? `http://localhost:5000/api/studies/${editingStudy._id}`
-                : 'http://localhost:5000/api/studies';
+                ? `${API_URL}/api/studies/${editingStudy._id}`
+                : `${API_URL}/api/studies`;
             
             const method = editingStudy ? 'PUT' : 'POST';
             
@@ -127,7 +128,7 @@ const StudyPlanner = () => {
         if (!window.confirm('Are you sure you want to delete this study plan?')) return;
         
         try {
-            const response = await fetch(`http://localhost:5000/api/studies/${id}`, {
+            const response = await fetch(`${API_URL}/api/studies/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`

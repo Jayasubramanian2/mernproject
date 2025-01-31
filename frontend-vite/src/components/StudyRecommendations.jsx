@@ -24,6 +24,7 @@ import {
     Share as ShareIcon
 } from '@mui/icons-material';
 import { useAuth } from '../context/AuthContext';
+import { API_URL } from '../config';
 
 const studyResources = [
     {
@@ -208,7 +209,7 @@ const StudyRecommendations = () => {
             };
 
             console.log('Sending request with token:', token);
-            const response = await fetch('http://localhost:5000/api/studies', {
+            const response = await fetch(`${API_URL}/api/studies`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
